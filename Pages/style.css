@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Lora', serif;
+    background: #fff;
+    color: #1a1a1a;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 220px;
+    background-color: #1f3556;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .sidebar li a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Cormorant', serif;
+    font-size: 20px;
+  }
+  
+  .sidebar li a:hover,
+  .sidebar li a:focus {
+    background-color: #d1d1d1;
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+  
+  .contenido {
+    flex: 1;
+    padding: 30px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+  }
+  
+  .contenido > section {
+    display: none;
+  }
+  
+  .contenido > section:target {
+    display: block;
+  }
+  
+  .contenido > section.default {
+    display: block;
+  }
+  
+  .contenido h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  .busqueda {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .busqueda input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px 0 0 8px;
+    font-family: 'Lora', serif;
+  }
+  
+  .busqueda button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #1f3556;
+    color: white;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+  }
+  
+  .formulario {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .formulario label {
+    display: block;
+    margin-bottom: 15px;
+    font-family: 'Cormorant', serif;
+  }
+  
+  .formulario input,
+  .formulario select {
+    width: 100%;
+    padding: 8px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-family: 'Lora', serif;
+  }
+  
+  .botones {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .botones button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 12px;
+    background-color: #1f3556;
+    color: white;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+  }
+  
+  .tabla-auditoria table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .tabla-auditoria th,
+  .tabla-auditoria td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-family: 'Lora', serif;
+  }
+  
+  .tabla-auditoria th {
+    background-color: #e6e6e6;
+    font-weight: bold;
+  }
+  
+  .tabla-auditoria .agregar {
+    padding: 10px 20px;
+    background-color: #1f3556;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+  }
+  

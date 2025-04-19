@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Comité</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    
+    .seccion {
+      display: none;
+    }
+    .seccion.activa {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>El Comité</h2>
+      <nav>
+        <ul>
+          <li><a href="#" data-seccion="auditoria">Planes Auditoría</a></li>
+          <li><a href="#" data-seccion="trabajadores" class="activo">Trabajadores</a></li>
+          <li><a href="#">Procesos</a></li>
+          <li><a href="#">Documentos</a></li>
+          <li><a href="#">Lista de Verificación</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="contenido">
+      
+      <section id="trabajadores" class="seccion activa">
+        <h2>Trabajadores</h2>
+        <div class="busqueda">
+          <input type="text" placeholder="Buscar: Nombre/Id" />
+          <button>🔍</button>
+        </div>
+        <form class="formulario">
+          <label>Nombre
+            <input type="text" />
+          </label>
+          <label>Identificación
+            <input type="text" />
+          </label>
+          <label>Celular
+            <input type="text" />
+          </label>
+          <label>Correo
+            <input type="email" />
+          </label>
+          <label>Sector
+            <select>
+              <option>Seleccionar</option>
+              <option>Sector 1</option>
+              <option>Sector 2</option>
+            </select>
+          </label>
+          <div class="botones">
+            <button type="submit" class="guardar">Guardar</button>
+            <button type="reset" class="cancelar">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Sección: Planes de Auditoría -->
+      <section id="auditoria" class="seccion">
+        <h2>Planes de Auditoría</h2>
+        <div class="tabla-auditoria">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Subtipo</th>
+                <th>Auditoría</th>
+                <th>Proceso</th>
+                <th>Líder Proceso</th>
+                <th>Personal a Auditar</th>
+                <th>Líder Auditor</th>
+                <th>Auditor</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Interna</td>
+                <td>Control</td>
+                <td>Lorem ipsum<br>dolor et sit amet</td>
+                <td>Lorem ipsum<br>dolor et sit amet</td>
+                <td>Agustino pelado<br>del socorro</td>
+                <td>Nombre de auditado 1,<br>nombre de auditado 2</td>
+                <td>Agustino pelado<br>del socorro</td>
+                <td>Agustino pelado<br>del socorro</td>
+                <td>Programada</td>
+                <td>02.04.27</td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="agregar">Agregar</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+
+    const enlaces = document.querySelectorAll("nav ul li a[data-seccion]");
+    const secciones = document.querySelectorAll(".seccion");
+
+    enlaces.forEach(enlace => {
+      enlace.addEventListener("click", e => {
+        e.preventDefault();
+
+        
+        enlaces.forEach(l => l.classList.remove("activo"));
+        
+        enlace.classList.add("activo");
+
+    
+        secciones.forEach(sec => sec.classList.remove("activa"));
+
+
+        const id = enlace.dataset.seccion;
+        document.getElementById(id).classList.add("activa");
+      });
+    });
+  </script>
+</body>
+</html>
+
