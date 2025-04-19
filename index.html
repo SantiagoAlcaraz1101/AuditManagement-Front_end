@@ -4,16 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>El Comité</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    
-    .seccion {
-      display: none;
-    }
-    .seccion.activa {
-      display: block;
-    }
-  </style>
+  <link rel="stylesheet" href="Pages/style.css" />
 </head>
 <body>
   <div class="container">
@@ -104,30 +95,7 @@
       </section>
     </main>
   </div>
-
-  <script>
-
-    const enlaces = document.querySelectorAll("nav ul li a[data-seccion]");
-    const secciones = document.querySelectorAll(".seccion");
-
-    enlaces.forEach(enlace => {
-      enlace.addEventListener("click", e => {
-        e.preventDefault();
-
-        
-        enlaces.forEach(l => l.classList.remove("activo"));
-        
-        enlace.classList.add("activo");
-
-    
-        secciones.forEach(sec => sec.classList.remove("activa"));
-
-
-        const id = enlace.dataset.seccion;
-        document.getElementById(id).classList.add("activa");
-      });
-    });
-  </script>
+  <script src="./main.js"></script>
 </body>
 </html>
 

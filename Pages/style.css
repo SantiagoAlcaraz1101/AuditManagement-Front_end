@@ -172,3 +172,9 @@
     font-family: 'Lora', serif;
   }
   
+  .seccion {
+    display: none;
+  }
+  .seccion.activa {
+    display: block;
+  }
