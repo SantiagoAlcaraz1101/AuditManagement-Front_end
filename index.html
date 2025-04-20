@@ -14,7 +14,7 @@
         <ul>
           <li><a href="#" data-seccion="auditoria">Planes Auditoría</a></li>
           <li><a href="#" data-seccion="trabajadores" class="activo">Trabajadores</a></li>
-          <li><a href="#">Procesos</a></li>
+          <li><a href="#" data-seccion="procesos">Procesos</a></li>
           <li><a href="#">Documentos</a></li>
           <li><a href="#">Lista de Verificación</a></li>
         </ul>
@@ -55,6 +55,47 @@
           </div>
         </form>
       </section>
+
+<!-- Vista Procesos -->
+<section id="procesos" class="seccion">
+  <h2>Procesos</h2>
+
+  <div class="busqueda">
+    <input type="text" placeholder="Buscar: Nombre/ID" />
+    <button>🔍</button>
+  </div>
+
+  <div class="contenedor-tabla">
+    <table class="tabla-procesos">
+      <thead>
+        <tr>
+          <th class="encabezado-tabla">Nombre</th>
+          <th class="encabezado-tabla">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fila-tabla">Recursos Humanos</td>
+          <td class="columna-acciones">
+            <button class="btn-editar">Editar</button>
+            <button class="btn-eliminar">x</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="fila-tabla">Marketing</td>
+          <td class="columna-acciones">
+            <button class="btn-editar">Editar</button>
+            <button class="btn-eliminar">x</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="contenedor-agregar">
+    <button class="btn-agregar">Agregar</button>
+  </div>
+</section>
 
       <!-- Sección: Planes de Auditoría -->
       <section id="auditoria" class="seccion">
