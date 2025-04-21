@@ -14,7 +14,8 @@
         <ul>
           <li><a href="#" data-seccion="auditoria">Planes Auditoría</a></li>
           <li><a href="#" data-seccion="trabajadores" class="activo">Trabajadores</a></li>
-          <li><a href="#">Procesos</a></li>
+          <li><a href="#" data-seccion="procesos" class = "activo">Procesos</a></li>
+          
           <li><a href="#">Documentos</a></li>
           <li><a href="#">Lista de Verificación</a></li>
         </ul>
@@ -55,6 +56,78 @@
           </div>
         </form>
       </section>
+
+      <!-- Vista Procesos -->
+      <section id="procesos" class="seccion">
+        <h2>Procesos</h2>
+
+        <div class="busqueda">
+          <input id="input-busqueda" type="text" placeholder="Buscar: Nombre/ID" />
+          <button id="btn-buscar">🔍</button>
+        </div>
+
+        <div class="contenedor-tabla">
+          <table class="tabla-procesos">
+            <thead>
+              <tr>
+                <th class="encabezado-tabla">Nombre</th>
+                <th class="encabezado-tabla">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-principal-body">
+              <!-- Sectores dinámicos -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="contenedor-agregar">
+          <button id="btn-agregar" class="btn-agregar">Agregar</button>
+        </div>
+      </section>
+
+      <!-- Vista Agregar Sector -->
+      <section id="vista-agregar-sector" class="seccion" >
+        <h2>Agregar nuevo sector</h2>
+
+        <div style="text-align: center; margin: 20px 0;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <input
+              type="text"
+              id="input-nuevo-sector"
+              placeholder="Nombre del nuevo sector"
+              style="padding: 10px; width: 300px;"
+            />
+            <img src="img/logo-comite.jpg" alt="Logo El Comité" style="height: 80px;" />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 40px; margin-left: 10px;">
+          <button id="btn-guardar" class="btn-agregar">Guardar</button>
+          <button id="btn-cancelar" class="btn-agregar">Cancelar</button>
+        </div>
+      </section>
+
+      <!-- Vista Editar Sector -->
+      <section id="vista-editar-sector" class="seccion">
+        <h2>Editar sector</h2>
+
+        <div style="text-align: center; margin: 20px 0;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <input
+              type="text"
+              id="input-editar-sector"
+              placeholder="Nuevo nombre del sector"
+              style="padding: 10px; width: 300px;"
+            />
+            <img src="img/logo-comite.jpg" alt="Logo El Comité" style="height: 80px; vertical-align: middle;" />
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 40px;">
+          <button id="btn-guardar-edicion" class="btn-agregar">Guardar</button>
+          <button id="btn-cancelar-edicion" class="btn-agregar">Cancelar</button>
+        </div>
+        </section>
 
       <!-- Sección: Planes de Auditoría -->
       <section id="auditoria" class="seccion">
