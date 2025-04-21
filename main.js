@@ -117,13 +117,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 tbodyPrincipal.appendChild(fila);
             });
   
-        document.querySelectorAll('.btn-eliminar').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = parseInt(btn.dataset.id);
-                sectores = sectores.filter(s => s.id !== id);
-                renderTabla(inputBusqueda.value.trim().toLowerCase());
+            document.querySelectorAll('.btn-eliminar').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.dataset.id);
+                    const sector = sectores.find(s => s.id === id);
+            
+                    Swal.fire({
+                        title: `¿Eliminar "${sector.nombre}"?`,
+                        text: "¡No podrás deshacer esta acción!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#1f3556',
+                        cancelButtonColor: '#d32f2f',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            sectores = sectores.filter(s => s.id !== id);
+                            renderTabla(inputBusqueda.value.trim().toLowerCase());
+            
+                            Swal.fire({
+                                title: 'Eliminado',
+                                text: 'El sector ha sido eliminado correctamente.',
+                                icon: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        }
+                    });
+                });
             });
-        });
+            
   
         document.querySelectorAll('.btn-editar').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -177,11 +201,29 @@ document.addEventListener('DOMContentLoaded', () => {
       btnEliminar.textContent = "Eliminar";
       btnEliminar.classList.add("btn-eliminar");
       btnEliminar.style.marginLeft = "8px";
-  
+      
       btnEliminar.addEventListener("click", () => {
-        if (confirm("¿Estás seguro de eliminar esta auditoría?")) {
-          fila.remove();
-        }
+        Swal.fire({
+          title: '¿Eliminar auditoría?',
+          text: "Esta acción no se puede deshacer.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#1f3556',
+          cancelButtonColor: '#d32f2f',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fila.remove();
+            Swal.fire({
+              title: 'Eliminado',
+              text: 'La auditoría ha sido eliminada correctamente.',
+              icon: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            });
+          }
+        });
       });
   
       td.appendChild(btnEditar);
