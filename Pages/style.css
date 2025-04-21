@@ -265,3 +265,70 @@
   .btn-agregar:hover {
     background-color: #2e4d8c;
   }
+  .tabla-contenedor {
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+  
+  .titulo-tabla {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #1f3556;
+  }
+  
+  .tabla-trabajadores {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .tabla-trabajadores th,
+  .tabla-trabajadores td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+  }
+  
+  .tabla-trabajadores th {
+    background-color: #e6e6e6;
+    text-align: left;
+  }
+  
+  .tabla-trabajadores tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .tabla-trabajadores .btn-editar,
+  .tabla-trabajadores .btn-eliminar {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-size: 13px;
+  }
+  
+  .btn-editar {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  .btn-editar:hover {
+    background-color: #e0aa00;
+  }
+  
+  .btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .btn-eliminar:hover {
+    background-color: #b02a37;
+  }
+  

@@ -224,4 +224,68 @@ document.addEventListener('DOMContentLoaded', () => {
       crearBotonesAcciones(fila);
     });
   });
+  // ==== FUNCIONALIDAD: Formulario de trabajadores ====
+const formTrabajador = document.querySelector("#trabajadores .formulario");
+const tbodyTrabajadores = document.getElementById("tbody-trabajadores");
+const tablaContainer = document.getElementById("contenedor-tabla-trabajadores");
+
+formTrabajador.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const [nombre, id, celular, correo, sectorSelect] = formTrabajador.querySelectorAll("input, select");
+  const sector = sectorSelect.options[sectorSelect.selectedIndex].text;
+
+  const fila = document.createElement("tr");
+  fila.innerHTML = `
+    <td>${nombre.value}</td>
+    <td>${id.value}</td>
+    <td>${celular.value}</td>
+    <td>${correo.value}</td>
+    <td>${sector}</td>
+    <td>
+      <button class="btn-editar">Editar</button>
+      <button class="btn-eliminar">Eliminar</button>
+    </td>
+  `;
+
+  // Evento eliminar
+  fila.querySelector(".btn-eliminar").addEventListener("click", () => {
+    if (confirm("¿Eliminar este trabajador?")) {
+      fila.remove();
+      if (tbodyTrabajadores.children.length === 0) {
+        tablaContainer.style.display = "none";
+      }
+    }
+  });
+
+  // Evento editar
+  fila.querySelector(".btn-editar").addEventListener("click", () => {
+    nombre.value = fila.children[0].innerText;
+    id.value = fila.children[1].innerText;
+    celular.value = fila.children[2].innerText;
+    correo.value = fila.children[3].innerText;
+    sectorSelect.value = sector;
+    fila.remove();
+  });
+
+  tbodyTrabajadores.appendChild(fila);
+  tablaContainer.style.display = "block";
+  formTrabajador.reset();
+});
+
+// ==== FUNCIONALIDAD: Buscador en tiempo real ====
+const inputBusqueda = document.getElementById("busqueda-trabajador");
+
+inputBusqueda.addEventListener("input", () => {
+  const filtro = inputBusqueda.value.toLowerCase();
+  const filas = tbodyTrabajadores.querySelectorAll("tr");
+
+  filas.forEach(fila => {
+    const nombre = fila.children[0].innerText.toLowerCase();
+    const identificacion = fila.children[1].innerText.toLowerCase();
+    const coincide = nombre.includes(filtro) || identificacion.includes(filtro);
+    fila.style.display = coincide ? "" : "none";
+  });
+});
+
   

@@ -13,7 +13,7 @@
       <nav>
         <ul>
           <li><a href="#" data-seccion="auditoria">Planes Auditoría</a></li>
-          <li><a href="#" data-seccion="trabajadores" >Trabajadores</a></li>
+          <li><a href="#" data-seccion="trabajadores" class="activo">Trabajadores</a></li>
           <li><a href="#" data-seccion="procesos" class = "activo">Procesos</a></li>
           
           <li><a href="#">Documentos</a></li>
@@ -26,10 +26,7 @@
       
       <section id="trabajadores" class="seccion activa">
         <h2>Trabajadores</h2>
-        <div class="busqueda">
-          <input type="text" placeholder="Buscar: Nombre/Id" />
-          <button>🔍</button>
-        </div>
+        
         <form class="formulario">
           <label>Nombre
             <input type="text" />
@@ -55,6 +52,31 @@
             <button type="reset" class="cancelar">Cancelar</button>
           </div>
         </form>
+        <!-- 🔍 Buscador -->
+<div class="busqueda">
+  <input type="text" id="busqueda-trabajador" placeholder="Buscar: Nombre/Id" />
+</div>
+
+<!-- 👥 Tabla de trabajadores (oculta al inicio) -->
+<div id="contenedor-tabla-trabajadores" class="tabla-contenedor" style="display: none;">
+  <h3 class="titulo-tabla">Lista de Trabajadores</h3>
+  <table class="tabla-trabajadores">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Identificación</th>
+        <th>Celular</th>
+        <th>Correo</th>
+        <th>Sector</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tbody-trabajadores">
+      <!-- Filas dinámicas -->
+    </tbody>
+  </table>
+</div>
+
       </section>
 
       <!-- Vista Procesos -->
@@ -205,3 +227,4 @@
   <script src="./main.js"></script>
 </body>
 </html>
+
