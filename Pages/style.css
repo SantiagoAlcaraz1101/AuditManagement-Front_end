@@ -178,3 +178,90 @@
   .seccion.activa {
     display: block;
   }
+  .btn-editar {
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+  }
+  
+  .btn-editar:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-eliminar {
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+  }
+  
+  .btn-eliminar:hover {
+    background-color: #d32f2f;
+  }
+  .contenedor-tabla {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 30px;
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  .tabla-procesos {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 500px;
+  }
+  
+  .encabezado-tabla {
+    background-color: #1f3763;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+  }
+  
+  .tabla-procesos td {
+    background-color: #d9d9d9;
+    padding: 10px;
+    font-family: 'Georgia', serif;
+    border: 1px solid black; /* bordes negros delgados */
+  }
+  
+  .columna-eliminar,
+  .columna-acciones {
+    width: 160px;
+    text-align: left;
+    vertical-align: middle;
+  }
+  
+  
+  .contenedor-agregar {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 30px;
+  }
+  
+  .btn-agregar {
+    background-color: #1f3763;
+    color: white;
+    font-family: 'Georgia', serif;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-agregar:hover {
+    background-color: #2e4d8c;
+  }
