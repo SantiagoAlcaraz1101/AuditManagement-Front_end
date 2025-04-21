@@ -73,6 +73,7 @@
                 <th>Auditor</th>
                 <th>Estado</th>
                 <th>Fecha</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -91,6 +92,39 @@
             </tbody>
           </table>
           <button class="agregar">Agregar</button>
+          <form id="form-auditoria" class="formulario-auditoria" style="display: none;">
+            <label>Tipo
+              <input type="text" name="tipo" required />
+            </label>
+            <label>Subtipo
+              <input type="text" name="subtipo" required />
+            </label>
+            <label>Auditoría
+              <input type="text" name="auditoria" required />
+            </label>
+            <label>Proceso
+              <input type="text" name="proceso" required />
+            </label>
+            <label>Líder Proceso
+              <input type="text" name="lider_proceso" required />
+            </label>
+            <label>Personal a Auditar
+              <input type="text" name="personal_a_auditar" required />
+            </label>
+            <label>Líder Auditor
+              <input type="text" name="lider_auditor" required />
+            </label>
+            <label>Auditor
+              <input type="text" name="auditor" required />
+            </label>
+            <label>Estado
+              <input type="text" name="estado" required />
+            </label>
+            <label>Fecha
+              <input type="date" name="fecha" required />
+            </label>
+            <button type="submit" class="guardar">Guardar Auditoría</button>
+          </form>
         </div>
       </section>
     </main>
