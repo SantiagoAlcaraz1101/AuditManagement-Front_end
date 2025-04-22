@@ -261,11 +261,40 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
+
   .btn-agregar:hover {
     background-color: #2e4d8c;
   }
-<<<<<<< HEAD
+  
+  .btn-agregar-auditoria {
+    background-color: #1f3763;
+    color: white;
+    font-family: 'Georgia', serif;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .btn-agregar-auditoria:hover {
+    background-color: #2e4d8c;
+  }
+  .btn-cancelar-auditoria {
+    background-color: #1f3763;
+    color: white;
+    font-family: 'Georgia', serif;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .btn-cancelar-auditoria:hover {
+    background-color: #2e4d8c;
+  }
   .tabla-contenedor {
     margin-top: 30px;
     background-color: white;
@@ -315,14 +344,6 @@
     font-size: 13px;
   }
   
-  .btn-editar {
-    background-color: #ffc107;
-    color: #000;
-  }
-  
-  .btn-editar:hover {
-    background-color: #e0aa00;
-  }
   
   .btn-eliminar {
     background-color: #dc3545;
@@ -333,10 +354,77 @@
     background-color: #b02a37;
   }
   
-=======
+
 
   .footer{
     height: 2vh;
     background-color: #d9d9d9;
   }
->>>>>>> 4a4c9d8f616e3795cf0a03955b64587e24073267
+
+
+  .formulario-auditoria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 40px;
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formulario-auditoria label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #1a1a1a;
+  }
+  
+  .formulario-auditoria input {
+    margin-top: 6px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .formulario-auditoria input[type="date"] {
+    padding: 6px;
+  }
+  
+  .agregar {
+    background-color: #002D5B;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .agregar:hover {
+    background-color: #00509e;
+  }
+  
+  .btn-agregar {
+    background-color: #002D5B;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .btn-agregar:hover {
+    background-color: #00509e;
+  }
+  
+  /* Botones finales */
+  .formulario-auditoria > div {
+    grid-column: span 3;
+    display: flex;
+    justify-content: center;
+  }

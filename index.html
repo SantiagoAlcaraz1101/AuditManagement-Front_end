@@ -16,7 +16,7 @@
       <h2>El Comité</h2>
       <nav>
         <ul>
-          <li><a href="#" data-seccion="auditoria">Planes Auditoría</a></li>
+          <li><a href="#" data-seccion="auditoria" class = "activo">Planes Auditoría</a></li>
           <li><a href="#" data-seccion="trabajadores" class="activo">Trabajadores</a></li>
           <li><a href="#" data-seccion="procesos" class = "activo">Procesos</a></li>
           
@@ -190,7 +190,7 @@
               </tr>
             </tbody>
           </table>
-          <button class="agregar">Agregar</button>
+          <button class="btn-agregar-auditoria">Agregar</button>
           <form id="form-auditoria" class="formulario-auditoria" style="display: none;">
             <label>Tipo
               <input type="text" name="tipo" required />
@@ -222,7 +222,11 @@
             <label>Fecha
               <input type="date" name="fecha" required />
             </label>
-            <button type="submit" class="guardar">Guardar Auditoría</button>
+            <div style="display: flex; justify-content: center; gap: 40px; margin-left: 10px; margin-top: 20px;">
+              <button type="submit" class="btn-agregar">Guardar</button>
+              <button type="button" class="btn-cancelar-auditoria">Cancelar</button>
+            </div>
+            </div>
           </form>
         </div>
       </section>

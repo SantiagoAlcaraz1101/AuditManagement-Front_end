@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td class="fila-tabla">${s.nombre}</td>
                     <td class="columna-acciones">
                         <button class="btn-editar" data-id="${s.id}">Editar</button>
-                        <button class="btn-eliminar" data-id="${s.id}">x</button>
+                        <button class="btn-eliminar" data-id="${s.id}">Eliminar</button>
                     </td>
                 `;
                 tbodyPrincipal.appendChild(fila);
@@ -168,13 +168,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================
     // Planes de Auditoría
     // =========================
-    const btnAgregarAuditoria = document.querySelector(".agregar");
+    const btnAgregarAuditoria = document.querySelector(".btn-agregar-auditoria");
+    const btnCancelarAuditoria = document.querySelector(".btn-cancelar-auditoria");
     const formAuditoria = document.getElementById("form-auditoria");
   
     btnAgregarAuditoria.addEventListener("click", () => {
       formAuditoria.style.display = formAuditoria.style.display === "none" ? "block" : "none";
     });
-  
+
+    btnCancelarAuditoria.addEventListener("click", () => {
+      formAuditoria.style.display = "none";
+      formAuditoria.reset();
+    });
+
     function crearBotonesAcciones(fila) {
       const td = document.createElement("td");
   
@@ -292,13 +298,29 @@ formTrabajador.addEventListener("submit", (e) => {
 
   // Evento eliminar
   fila.querySelector(".btn-eliminar").addEventListener("click", () => {
-    if (confirm("¿Eliminar este trabajador?")) {
-      fila.remove();
-      if (tbodyTrabajadores.children.length === 0) {
-        tablaContainer.style.display = "none";
+    Swal.fire({
+      title: '¿Eliminar trabajador?',
+      text: "Esta acción no se puede deshacer.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1f3556',
+      cancelButtonColor: '#d32f2f',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fila.remove();
+        Swal.fire({
+          title: 'Eliminado',
+          text: 'El trabajador ha sido eliminado correctamente.',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
       }
-    }
+    });
   });
+
 
   // Evento editar
   fila.querySelector(".btn-editar").addEventListener("click", () => {
