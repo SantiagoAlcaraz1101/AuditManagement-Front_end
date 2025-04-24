@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   let sectores = [
+<<<<<<< HEAD
       { id: 1, nombre: 'Recursos Humanos' },
       { id: 2, nombre: 'Marketing' }
+=======
+    { id: 1, nombre: 'Recursos Humanos' },
+    { id: 2, nombre: 'Marketing' }
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
   ];
   let idContador = 3;
   let idSectorEditando = null;
@@ -14,14 +19,247 @@ document.addEventListener('DOMContentLoaded', () => {
 
   enlaces.forEach(enlace => {
     enlace.addEventListener('click', e => {
+<<<<<<< HEAD
         e.preventDefault();
         enlaces.forEach(l => l.classList.remove('activo'));
         enlace.classList.add('activo');
         const id = enlace.dataset.seccion;
         mostrarVista(id);
+=======
+      e.preventDefault();
+      enlaces.forEach(l => l.classList.remove('activo'));
+      enlace.classList.add('activo');
+      const id = enlace.dataset.seccion;
+      mostrarVista(id);
     });
   });
 
+  function mostrarVista(idVista) {
+    secciones.forEach(sec => sec.classList.remove('activa'));
+    const vista = document.getElementById(idVista);
+    if (vista) {
+      vista.classList.add('activa');
+    }
+  }
+
+  // =========================
+  // Elementos de la interfaz
+  // =========================
+  const tbodyPrincipal = document.getElementById('tabla-principal-body');
+  const inputBusqueda = document.getElementById('input-busqueda');
+
+  // Agregar
+  const btnAgregar = document.getElementById('btn-agregar');
+  const btnGuardar = document.getElementById('btn-guardar');
+  const btnCancelar = document.getElementById('btn-cancelar');
+  const inputNuevoSector = document.getElementById('input-nuevo-sector');
+
+  // Editar
+  const inputEditarSector = document.getElementById('input-editar-sector');
+  const btnGuardarEdicion = document.getElementById('btn-guardar-edicion');
+  const btnCancelarEdicion = document.getElementById('btn-cancelar-edicion');
+
+  // Buscar
+  const btnBuscar = document.getElementById('btn-buscar');
+
+  // =========================
+  // Eventos Sectores
+  // =========================
+  btnAgregar.addEventListener('click', () => {
+    inputNuevoSector.value = '';
+    mostrarVista('vista-agregar-sector');
+  });
+
+  btnCancelar.addEventListener('click', () => {
+    mostrarVista('procesos');
+  });
+
+  btnGuardar.addEventListener('click', () => {
+    const nombre = inputNuevoSector.value.trim();
+    const nombreValido = /^[a-zA-Z\s]+$/.test(nombre);
+
+    if (!nombreValido) {
+      Swal.fire({
+        title: 'Nombre inválido',
+        text: 'Por favor ingresa un nombre válido para el sector (solo letras y espacios).',
+        icon: 'error',
+        confirmButtonColor: '#1f3556',
+      });
+      return;
+    }
+
+    const existeSector = sectores.some(s => s.nombre.toLowerCase() === nombre.toLowerCase());
+    if (existeSector) {
+      Swal.fire({
+        title: 'Sector duplicado',
+        text: 'Ya existe un sector con este nombre.',
+        icon: 'warning',
+        confirmButtonColor: '#1f3556',
+      });
+      return;
+    }
+
+    if (nombre !== '') {
+      sectores.push({ id: idContador++, nombre });
+      renderTabla(inputBusqueda.value.trim().toLowerCase());
+      mostrarVista('procesos');
+    } else {
+      Swal.fire({
+        title: 'Nombre vacío',
+        text: 'Por favor ingresa un nombre válido para el sector.',
+        icon: 'error',
+        confirmButtonColor: '#1f3556',
+      });
+    }
+  });
+
+  btnGuardarEdicion.addEventListener('click', () => {
+    const nuevoNombre = inputEditarSector.value.trim();
+    const nombreValido = /^[a-zA-Z\s]+$/.test(nuevoNombre);
+
+    if (!nombreValido) {
+      Swal.fire({
+        title: 'Nombre inválido',
+        text: 'Por favor ingresa un nombre válido para el sector (solo letras y espacios).',
+        icon: 'error',
+        confirmButtonColor: '#1f3556',
+      });
+      return;
+    }
+
+    const existeSector = sectores.some(s => s.nombre.toLowerCase() === nuevoNombre.toLowerCase() && s.id !== idSectorEditando);
+    if (existeSector) {
+      Swal.fire({
+        title: 'Sector duplicado',
+        text: 'Ya existe un sector con este nombre.',
+        icon: 'warning',
+        confirmButtonColor: '#1f3556',
+      });
+      return;
+    }
+
+    if (nuevoNombre !== '' && idSectorEditando !== null) {
+      const sector = sectores.find(s => s.id === idSectorEditando);
+      if (sector) {
+        sector.nombre = nuevoNombre;
+        renderTabla(inputBusqueda.value.trim().toLowerCase());
+      }
+      idSectorEditando = null;
+      mostrarVista('procesos');
+    } else {
+      Swal.fire({
+        title: 'Nombre vacío',
+        text: 'Por favor ingresa un nombre válido para el sector.',
+        icon: 'error',
+        confirmButtonColor: '#1f3556',
+      });
+    }
+  });
+
+  btnBuscar.addEventListener('click', () => {
+    renderTabla(inputBusqueda.value.trim().toLowerCase());
+  });
+
+  inputBusqueda.addEventListener('input', () => {
+    renderTabla(inputBusqueda.value.trim().toLowerCase());
+  });
+
+  btnCancelarEdicion.addEventListener('click', () => {
+    idSectorEditando = null;
+    mostrarVista('procesos');
+  });
+
+  btnGuardarEdicion.addEventListener('click', () => {
+    const nuevoNombre = inputEditarSector.value.trim();
+    if (nuevoNombre !== '' && idSectorEditando !== null) {
+      const sector = sectores.find(s => s.id === idSectorEditando);
+      if (sector) {
+        sector.nombre = nuevoNombre;
+        renderTabla(inputBusqueda.value.trim().toLowerCase());
+      }
+      idSectorEditando = null;
+      mostrarVista('procesos');
+    } else {
+      alert('Por favor ingresa un nombre válido para el sector.');
+    }
+  });
+
+  function renderTabla(filtro = '') {
+    tbodyPrincipal.innerHTML = '';
+    sectores
+      .filter(s => s.nombre.toLowerCase().includes(filtro))
+      .forEach(s => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+          <td class="fila-tabla">${s.nombre}</td>
+          <td class="columna-acciones">
+            <button class="btn-editar" data-id="${s.id}">Editar</button>
+            <button class="btn-eliminar" data-id="${s.id}">Eliminar</button>
+          </td>
+        `;
+        tbodyPrincipal.appendChild(fila);
+      });
+
+    document.querySelectorAll('.btn-eliminar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt(btn.dataset.id);
+        const sector = sectores.find(s => s.id === id);
+
+        Swal.fire({
+          title: `¿Eliminar "${sector.nombre}"?`,
+          text: "¡No podrás deshacer esta acción!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#1f3556',
+          cancelButtonColor: '#d32f2f',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            sectores = sectores.filter(s => s.id !== id);
+            renderTabla(inputBusqueda.value.trim().toLowerCase());
+
+            Swal.fire({
+              title: 'Eliminado',
+              text: 'El sector ha sido eliminado correctamente.',
+              icon: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            });
+          }
+        });
+      });
+    });
+
+    document.querySelectorAll('.btn-editar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt(btn.dataset.id);
+        const sector = sectores.find(s => s.id === id);
+        if (sector) {
+          idSectorEditando = id;
+          inputEditarSector.value = sector.nombre;
+          mostrarVista('vista-editar-sector');
+        }
+      });
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
+    });
+  }
+
+  // Inicial
+  renderTabla();
+
+  // =========================
+  // Planes de Auditoría
+  // =========================
+  const btnAgregarAuditoria = document.querySelector(".btn-agregar-auditoria");
+  const btnCancelarAuditoria = document.querySelector(".btn-cancelar-auditoria");
+  const formAuditoria = document.getElementById("form-auditoria");
+
+  btnAgregarAuditoria.addEventListener("click", () => {
+    formAuditoria.style.display = formAuditoria.style.display === "none" ? "block" : "none";
+  });
+
+<<<<<<< HEAD
   function mostrarVista(idVista) {
       secciones.forEach(sec => sec.classList.remove('activa'));
       const vista = document.getElementById(idVista);
@@ -176,6 +414,8 @@ document.addEventListener('DOMContentLoaded', () => {
     formAuditoria.style.display = formAuditoria.style.display === "none" ? "block" : "none";
   });
 
+=======
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
   btnCancelarAuditoria.addEventListener("click", () => {
     formAuditoria.style.display = "none";
     formAuditoria.reset();
@@ -207,7 +447,11 @@ document.addEventListener('DOMContentLoaded', () => {
     btnEliminar.textContent = "Eliminar";
     btnEliminar.classList.add("btn-eliminar");
     btnEliminar.style.marginLeft = "8px";
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
     btnEliminar.addEventListener("click", () => {
       Swal.fire({
         title: '¿Eliminar auditoría?',
@@ -239,6 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   formAuditoria.addEventListener("submit", function (e) {
     e.preventDefault();
+<<<<<<< HEAD
   
     const camposTexto = [
       "subtipo", "auditoria", "proceso", "lider_proceso",
@@ -261,6 +506,38 @@ document.addEventListener('DOMContentLoaded', () => {
   
     const nuevaFila = document.createElement("tr");
   
+=======
+
+    const fechaSeleccionada = new Date(this.fecha.value);
+    const fechaActual = new Date();
+    fechaActual.setHours(0, 0, 0, 0); // Eliminar la hora para comparar solo la fecha
+
+    const fechaMaxima = new Date();
+    fechaMaxima.setFullYear(fechaMaxima.getFullYear() + 1); // Permitir hasta un año en el futuro
+
+    if (fechaSeleccionada < fechaActual) {
+      Swal.fire({
+        title: 'Fecha inválida',
+        text: 'Por favor selecciona una fecha posterior o igual al día actual.',
+        icon: 'error',
+        confirmButtonColor: '#1f3556',
+      });
+      return;
+    }
+
+    if (fechaSeleccionada > fechaMaxima) {
+      Swal.fire({
+        title: 'Fecha inválida',
+        text: 'Por favor selecciona una fecha no mayor a un año desde hoy.',
+        icon: 'error',
+        confirmButtonColor: '#1f3556',
+      });
+      return;
+    }
+
+    const nuevaFila = document.createElement("tr");
+
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
     const datos = [
       this.tipo.value,
       this.subtipo.value,
@@ -273,26 +550,61 @@ document.addEventListener('DOMContentLoaded', () => {
       this.estado.value,
       this.fecha.value,
     ];
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
     datos.forEach(texto => {
       const td = document.createElement("td");
       td.innerHTML = texto.replace(/\n/g, "<br>");
       nuevaFila.appendChild(td);
     });
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
     crearBotonesAcciones(nuevaFila);
     document.querySelector(".tabla-auditoria tbody").appendChild(nuevaFila);
     this.reset();
     this.style.display = "none";
   });
+<<<<<<< HEAD
   
+=======
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
 
   // Añadir botones a filas existentes
   document.querySelectorAll(".tabla-auditoria tbody tr").forEach(fila => {
     crearBotonesAcciones(fila);
   });
+<<<<<<< HEAD
 });
 // ==== FUNCIONALIDAD: Formulario de trabajadores ====
+=======
+
+  // =========================
+  // Ajustar alineación de tabla
+  // =========================
+  const tablaAuditoria = document.querySelector(".tabla-auditoria");
+  const ajustarAlineacion = () => {
+    const headers = tablaAuditoria.querySelectorAll("thead th");
+    const filas = tablaAuditoria.querySelectorAll("tbody tr");
+
+    filas.forEach(fila => {
+      const celdas = fila.querySelectorAll("td");
+      celdas.forEach((celda, index) => {
+        celda.style.minWidth = `${headers[index].offsetWidth}px`;
+      });
+    });
+  };
+
+  window.addEventListener("resize", ajustarAlineacion);
+  ajustarAlineacion();
+});
+  // ==== FUNCIONALIDAD: Formulario de trabajadores ====
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
 const formTrabajador = document.querySelector("#trabajadores .formulario");
 const tbodyTrabajadores = document.getElementById("tbody-trabajadores");
 const tablaContainer = document.getElementById("contenedor-tabla-trabajadores");
@@ -316,6 +628,7 @@ fila.innerHTML = `
   </td>
 `;
 
+<<<<<<< HEAD
 // Evento eliminar
 fila.querySelector(".btn-eliminar").addEventListener("click", () => {
   Swal.fire({
@@ -338,9 +651,47 @@ fila.querySelector(".btn-eliminar").addEventListener("click", () => {
         showConfirmButton: false
       });
     }
+=======
+  // Evento eliminar
+  fila.querySelector(".btn-eliminar").addEventListener("click", () => {
+    Swal.fire({
+      title: '¿Eliminar trabajador?',
+      text: "Esta acción no se puede deshacer.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1f3556',
+      cancelButtonColor: '#d32f2f',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fila.remove();
+        Swal.fire({
+          title: 'Eliminado',
+          text: 'El trabajador ha sido eliminado correctamente.',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      }
+    });
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
   });
 });
 
+<<<<<<< HEAD
+=======
+
+  // Evento editar
+  fila.querySelector(".btn-editar").addEventListener("click", () => {
+    nombre.value = fila.children[0].innerText;
+    id.value = fila.children[1].innerText;
+    celular.value = fila.children[2].innerText;
+    correo.value = fila.children[3].innerText;
+    sectorSelect.value = sector;
+    fila.remove();
+  });
+>>>>>>> a1487d112a1f93e618f71b5f7987625c52e60a85
 
 // Evento editar
 fila.querySelector(".btn-editar").addEventListener("click", () => {
